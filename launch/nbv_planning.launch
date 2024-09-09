@@ -1,0 +1,4 @@
+<launch>
+  <!-- <rosparam file="$(find nbv_planning)/params/params.yaml" command="load"/> -->
+  <node pkg="nbv_planning" type="nbv_planner.py" name="nbv_planner" respawn="false" output="screen"/>
+</launch>

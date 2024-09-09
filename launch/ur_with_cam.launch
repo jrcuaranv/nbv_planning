@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- Gazebo parameters -->
+  <!-- <env name="GAZEBO_MODEL_PATH" value="$(find nbv_planning)/models" /> -->
+  <arg name="paused" default="false" doc="Starts Gazebo in paused mode" />
+  <arg name="gui" default="true" doc="Starts Gazebo gui" />
+  <arg name="gazebo_killer" default="true" doc="Starts Gazebo killer" />
+  <arg name="world_path" default="$(find nbv_planning)/worlds" />
+  <arg name="world_name" default="world19_mapping_evaluation" />
+  <arg name="gazebo_model_name" default="robot" doc="The name to give to the model in Gazebo (after spawning it)." />
+  <arg name="robot_description_param_name" default="robot_description" doc="Name of the parameter which contains the robot description (ie: URDF) which should be spawned into Gazebo." />
+
+
+  <!-- startup simulated world -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" default="$(arg world_path)/$(arg world_name).world"/>
+    <arg name="paused" value="$(arg paused)"/>
+    <arg name="gui" value="$(arg gui)"/>
+  </include>
+
+
+  <!-- <node if="$(arg gazebo_killer)" name="gazebo_killer_node" pkg="ur_with_cam_gazebo" type="gazebo_killer_node.py"/> -->
+
+</launch>

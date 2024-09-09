@@ -1,0 +1,19 @@
+sampling_radius: 0.4
+cluster_size: 0.1
+plant_height: 1.0
+add_seg_noise: False
+cam:
+  rgb_topic: /camera2/color/image_raw/compressed
+  depth_topic: /camera2/depth/image_raw
+  crop_size: 400
+
+  intrinsics:
+    fx: 381.36246688113556
+    fy: 381.36246688113556
+    cx: 320.5
+    cy: 320.5
+  dist:
+    k1: 0.0
+    k2: 0.0
+    r1: 0.0
+    r2: 0.0
