@@ -75,7 +75,8 @@ catkin_make
 cd catkin_ws/src/nbv_planning/data/models
 ./install_models.sh
 ```
-2. Launch main files in independent terminals (easy for debugging and visualization)
+2. Set "data_dir" and "save_path" in /catkin_ws/src/nbv_planning/params/params.yaml and catkin_ws/src/SSMI-agriculture/SSMI-Mapping/params/octomap_generator_evaluation_gazebo.yaml, respectively.
+3. Launch main files in independent terminals (easy for debugging and visualization)
 ```
 cd catkin_ws
 source devel/setup.bash
