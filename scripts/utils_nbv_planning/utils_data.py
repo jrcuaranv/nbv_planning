@@ -1,11 +1,11 @@
 import numpy as np
-
-def load_gt_data(model_id):
+import os
+def load_gt_data(model_id, data_dir):
     """
     Load ground truth pointclouds for ripe fruits only
     Original mesh models downloaded from: https://github.com/Eruvae/ur_with_cam_gazebo/tree/master
     """
-    pointcloud_path = '../data/models/capsicum_plant_' + str(model_id)+'/meshes/VG07_'+str(model_id) + '_fruitonly_ripe.xyz'
+    pointcloud_path =  os.path.join(data_dir, 'models/capsicum_plant_' + str(model_id)+'/meshes/VG07_'+str(model_id) + '_fruitonly_ripe.xyz')
     
     if (model_id==3):
         xyz_plant_origin = [0,0,0] # in world frame

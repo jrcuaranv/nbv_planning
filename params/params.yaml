@@ -1,3 +1,4 @@
+data_dir: /home/daslab/Documents/repositories/mapping_ag_ws/src/nbv_planning/data
 sampling_radius: 0.4
 cluster_size: 0.1
 plant_height: 1.0

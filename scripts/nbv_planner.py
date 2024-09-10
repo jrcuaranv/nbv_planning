@@ -23,23 +23,18 @@ import geometry_msgs.msg
 from semantic_octomap.srv import *
 
 
-from TravellingSalesman import TravellingSalesman 
-from utils_evaluation import compute_surface_coverage
-from utils_active_mapping import ViewpointEvaluation
-from utils import compute_xyz_vector, ros_pose_to_SE3, SE3_to_ros_pose
-from utils_data import load_gt_data
-from hsi_color_segmentation import get_semantic_image
+from utils_nbv_planning.TravellingSalesman import TravellingSalesman 
+from utils_nbv_planning.utils_evaluation import compute_surface_coverage
+from utils_nbv_planning.utils_active_mapping import ViewpointEvaluation
+from utils_nbv_planning.utils import compute_xyz_vector, ros_pose_to_SE3, SE3_to_ros_pose
+from utils_nbv_planning.utils_data import load_gt_data
+from utils_nbv_planning.hsi_color_segmentation import get_semantic_image
 import yaml
 
 class NBVPlanner:
     def __init__(self):
         
         rospy.init_node('set_link_state', anonymous=True)
-        with open('../params/params.yaml', 'r') as f:
-            params = yaml.safe_load(f)  # Use safe_load for security
-        for param_name, param_value in params.items():
-            rospy.set_param(param_name, param_value)
-
 
         try:
             os.remove("/home/jose/semantic_points.txt") # file written by semantic octomap
@@ -52,7 +47,8 @@ class NBVPlanner:
         self.plant_height = rospy.get_param('/plant_height') # average plant height
         self.add_seg_noise = rospy.get_param('/add_seg_noise') # add segmentation noise
         self.output_dir = rospy.get_param('/octomap/save_path')
-        self.pointcloud_path = rospy.get_param('/octomap/save_path') + 'pointcloud.txt' #semantic nodes saved by sem. octomap
+        self.data_dir = rospy.get_param('/data_dir')
+        self.pointcloud_path = rospy.get_param('/octomap/save_path') + 'semantic_points.txt' #semantic nodes saved by sem. octomap
         self.fx = rospy.get_param('/cam/intrinsics/fx')
         self.fy = rospy.get_param('/cam/intrinsics/fy')
         # self.cx = rospy.get_param('/cam/intrinsics/cx')
@@ -152,7 +148,7 @@ class NBVPlanner:
         
         for plant_id in self.plant_ids:
             self.plant_id = plant_id
-            self.gt_centroids, self.xyz_plant_origin, self.gt_pointcloud_path = load_gt_data(plant_id)
+            self.gt_centroids, self.xyz_plant_origin, self.gt_pointcloud_path = load_gt_data(plant_id, self.data_dir)
             self.pointcloud_gt = np.loadtxt(self.gt_pointcloud_path)
             plant_centroid = copy.deepcopy(self.xyz_plant_origin)
             plant_centroid[2] = self.plant_height/2

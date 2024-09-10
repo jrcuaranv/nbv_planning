@@ -15,6 +15,7 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
 )
 
+catkin_python_setup()
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
 
@@ -163,6 +164,7 @@ DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 FILES_MATCHING PATTERN "*.launch"
 )
 
+
 install(DIRECTORY
 params
 DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
@@ -171,6 +173,11 @@ FILES_MATCHING PATTERN "*.yaml"
 
 catkin_install_python(PROGRAMS
 scripts/nbv_planner.py
+scripts/utils_nbv_planning/hsi_color_segmentation.py
+scripts/utils_nbv_planning/TravellingSalesman.py
+scripts/utils_nbv_planning/utils_active_mapping.py
+scripts/utils_nbv_planning/utils_evaluation.py
+scripts/utils_nbv_planning/utils.py
 DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
 
 # all install targets should use catkin DESTINATION variables
