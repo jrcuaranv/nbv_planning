@@ -8,6 +8,7 @@ Further description will be available soon.
   </a>
 </div>
 
+[Video - Active mapping with robot manipulator](https://youtu.be/l6IBl4n1GJ0)
 ## Dependencies
 - ROS Noetic
 - Nanoflann
@@ -18,6 +19,7 @@ Further description will be available soon.
 - OctoMap
 - octomap_msgs
 - octomap_rviz_plugins
+- [SSMI-agriculture](https://github.com/jrcuaranv/SSMI-agriculture)
 ## Bulding the project (Tested with ubuntu 20.04)
 ### Install dependencies
 - Install ROS Noetic
